@@ -56,16 +56,29 @@ class Filter:
         abstract1 = self.abstract.replace(", "," ")
         abstract2 = self.abstract.replace("/"," ")
         self.list_abstract_sentence = abstract2.split(". ")
-        #self.list_of_abstract_sentence_sets = [ set(x) for x in self.list_abstract_sentence]
-
+        self.list_of_abstract_sentence_sets = []
+        self.list_of_abstract_sentence_sets = [set(x.split(" ")) for x in self.list_abstract_sentence] 
+    
     def get_data_from_page(self):
         self._get_abstract()
         self._create_set_of_abstract_words()
-        # self._create_list_of_sets_of_sentence()
+        self._create_list_of_sets_of_sentence()
 
     def check_abstract(self):
         if set_of_serch_items.issubset(self.set_of_abstract_words):
             return True
+
+    def check_abstract_sentences(self):
+        for x in self.list_of_abstract_sentence_sets:
+            if set_of_serch_items.issubset(x):
+                return True
+
+    def check_for_no_interaction_words(self):
+        for x in self.list_of_abstract_sentence_sets:
+            if set_of_serch_items.issubset(x) and no_interaction_set.intersection(x):
+                return True
+            else:
+                return False
 
     #def check_abstract_sentence(self):
 
@@ -74,7 +87,8 @@ class Filter:
 obiekt = Filter('https://link.springer.com/article/10.2165/11205830-000000000-00000')
 
 obiekt.get_data_from_page()
-print(obiekt.check_abstract())
+
+print(obiekt.check_for_no_interaction_words())
 
 
 
