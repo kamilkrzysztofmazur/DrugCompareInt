@@ -34,64 +34,91 @@ no_interaction_set = {
 'not causes inflammation',
 'not cause inflammation',
 }
+class Animal:
+        
+    def __init__(self):
+        self.kamil = "kamil" 
+        # self.abstract = ""
+        # self.set_of_abstract_words = ""
+        # self.list_of_sets_of_sentence = ""
+        
+    # def get_abstract(self):    
+    #     page = requests.get(self.url)
+    #     soup = BeautifulSoup(page.content, 'html.parser')
+    #     self.abstract = soup.find(id="Abs1-section").get_text() # wybiera text z sekcjii Abs1-section
+    
+
+        
+    # def jdkj(self):
+    #     self.set_of_abstract_words = set(abstract2.split(" "))
+    #     self.list_abstract_sentence = abstract2.split(". ")
+    #     abstract1 = abstract.replace(", "," ")
+    #     abstract2 = abstract.replace("/"," ")
+        # self.list_of_abstract_sentece_sets = []
+        # for x in self.list_abstract_sentence:
+        #     self.list_of_abstract_sentece_sets.append(set(x))
+    
+    obiekt = Animal()
+
+    print(obiekt.kamil)
+
+    
+    
+    # funkcja sprawdzająca czy w abstrakcie występują trzy słowa kluczowe, 
+    # def check_abstract(self):
+    #     if set_of_serch_items.issubset(set_of_abstract_words):
+    #         return True    
+        # if lek1 and lek2 and choroba in abstract:
+        #     return url
+
+    #funkcja sprawdzająca czy w zdaniach abstraku występują trzy słowa kluczowe 
+    # def check_abstract_sentences(self):
+    #     for x in list_of_abstract_sentence:
+    #         set_of_serch_items.issubset(set(x))
+    #         return True
+        # for sentence in list_of_sentence:
+        #     if lek1 and lek2 and choroba in sentence:
+        #         return url
+
+    # funkcja sprawdzająca czy w zdaniach abstraku występują trzy słowa kluczowe i słowa  typu "no interaction"
+    # def check_abstract_sentences_interaction_words(self):
+    #     for x in list_of_abstract_sentence:
+    #         set_of_serch_items.issubset(set(x))
+    #         no_interaction_set.intersection(set(x))
+    #         return True
+        # for sentence in list_of_sentence:
+        #     if lek1 and lek2 and choroba in sentence:
+        #         for word in no_interaction_list:
+        #             if word in sentence:
+        #                 return url
+
+# list_of_objects = []
+# list_of_first_loop_result = []
+# list_of_second_loop_result = []
+
+# for x in list_of_article_links:
+#     list_of_objects.append(MyClass(x))
+
+# for x in list_of_objects:
+#     if set_of_serch_items.issubset(x.set_of_abstract_words):
+#         list_of_first_loop_result.append(x.url)
 
 
-
-
-# funkcja sprawdzająca czy w abstrakcie występują trzy słowa kluczowe, 
-def check_abstract(url):
-    page = requests.get(url)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    abstract = soup.find(id="Abs1-section").get_text() # wybiera text z sekcjii Abs1-section
-    abstract = abstract.replace(", "," ")
-    abstract = abstract.replace("/"," ")
-    set_of_abstract_words = set(abstract.split(" "))
-    if set_of_serch_items.issubset(set_of_abstract_words):
-        return url
-    # if lek1 and lek2 and choroba in abstract:
-    #     return url
+# for x in list_of_objects:
+#     for y in x.list_abstract_sentence:
+#         print(x.list_abstract_sentence)
+        # if set_of_serch_items.issubset(y):
+        #     list_of_second_loop_result.append(x.url)
         
 
-#funkcja sprawdzająca czy w zdaniach abstraku występują trzy słowa kluczowe 
-def check_abstract_sentences(url):
-    page = requests.get(url)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    abstract = soup.find(id="Abs1-section").get_text() # wybiera text z sekcjii Abs1-section
-    abstract = abstract.replace(", "," ")
-    abstract = abstract.replace("/"," ")
-    list_abstract_sentence = [abstract.split(". ")]
-    for x in list_abstract_sentence:
-        set_of_serch_items.issubset(set(x))
-        return url
-    # for sentence in list_of_sentence:
-    #     if lek1 and lek2 and choroba in sentence:
-    #         return url
+# print(list_of_second_loop_result)
 
-            
 
-# funkcja sprawdzająca czy w zdaniach abstraku występują trzy słowa kluczowe i słowa  typu "no interaction"
-def check_abstract_sentences_interaction_words(url):
-    page = requests.get(url)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    abstract = soup.find(id="Abs1-section").get_text() # wybiera text z sekcjii Abs1-section
-    abstract = abstract.replace(", "," ")
-    abstract = abstract.replace("/"," ")
-    list_abstract_sentence = [abstract.split(". ")]
-    for x in list_abstract_sentence:
-        set_of_serch_items.issubset(set(x))
-        no_interaction_set.intersection(set(x))
-        return url
-    # for sentence in list_of_sentence:
-    #     if lek1 and lek2 and choroba in sentence:
-    #         for word in no_interaction_list:
-    #             if word in sentence:
-    #                 return url
+# list_of_first_loop_result = [check_abstract(x) for x in list_of_article_links]
+# list_of_second_loop_result = [check_abstract_sentences(x) for x in list_of_first_loop_result]
+# list_of_third_loop_result = [check_abstract_sentences_interaction_words(x) for x in list_of_second_loop_result]
 
-list_of_first_loop_result = [check_abstract(x) for x in list_of_article_links]
-list_of_second_loop_result = [check_abstract_sentences(x) for x in list_of_first_loop_result]
-list_of_third_loop_result = [check_abstract_sentences_interaction_words(x) for x in list_of_second_loop_result]
-
-print(list_of_third_loop_result)
+# print(list_of_first_loop_result)
 
 # funkcja zwracająca uszczuploną listę linków ( gdy w abstrakcie występują wymienione słowa)
 # list_of_article_links_with_all_words_in_abstract = 
