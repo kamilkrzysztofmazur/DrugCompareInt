@@ -56,55 +56,27 @@ class Filter:
         abstract1 = self.abstract.replace(", "," ")
         abstract2 = self.abstract.replace("/"," ")
         self.list_abstract_sentence = abstract2.split(". ")
-        self.list_of_abstract_sentence_sets = [set(x) for x in self.list_abstract_sentence]
+        #self.list_of_abstract_sentence_sets = [ set(x) for x in self.list_abstract_sentence]
 
     def get_data_from_page(self):
         self._get_abstract()
         self._create_set_of_abstract_words()
-        self._create_list_of_sets_of_sentence()
+        # self._create_list_of_sets_of_sentence()
 
+    def check_abstract(self):
+        if set_of_serch_items.issubset(self.set_of_abstract_words):
+            return True
 
-    # def jdkj(self):
-    #     self.set_of_abstract_words = set(abstract2.split(" "))
-    #     
-    #     abstract1 = abstract.replace(", "," ")
-    #     abstract2 = abstract.replace("/"," ")
-        
-    
+    #def check_abstract_sentence(self):
+
+            
+
 obiekt = Filter('https://link.springer.com/article/10.2165/11205830-000000000-00000')
 
-print(obiekt.get_data_from_page())
-print(obiekt.list_of_abstract_sentence_sets)
+obiekt.get_data_from_page()
+print(obiekt.check_abstract())
 
-    
-    
-    # funkcja sprawdzająca czy w abstrakcie występują trzy słowa kluczowe, 
-    # def check_abstract(self):
-    #     if set_of_serch_items.issubset(set_of_abstract_words):
-    #         return True    
-        # if lek1 and lek2 and choroba in abstract:
-        #     return url
 
-    #funkcja sprawdzająca czy w zdaniach abstraku występują trzy słowa kluczowe 
-    # def check_abstract_sentences(self):
-    #     for x in list_of_abstract_sentence:
-    #         set_of_serch_items.issubset(set(x))
-    #         return True
-        # for sentence in list_of_sentence:
-        #     if lek1 and lek2 and choroba in sentence:
-        #         return url
-
-    # funkcja sprawdzająca czy w zdaniach abstraku występują trzy słowa kluczowe i słowa  typu "no interaction"
-    # def check_abstract_sentences_interaction_words(self):
-    #     for x in list_of_abstract_sentence:
-    #         set_of_serch_items.issubset(set(x))
-    #         no_interaction_set.intersection(set(x))
-    #         return True
-        # for sentence in list_of_sentence:
-        #     if lek1 and lek2 and choroba in sentence:
-        #         for word in no_interaction_list:
-        #             if word in sentence:
-        #                 return url
 
 # list_of_objects = []
 # list_of_first_loop_result = []
@@ -134,29 +106,3 @@ print(obiekt.list_of_abstract_sentence_sets)
 
 # print(list_of_first_loop_result)
 
-# funkcja zwracająca uszczuploną listę linków ( gdy w abstrakcie występują wymienione słowa)
-# list_of_article_links_with_all_words_in_abstract = 
-# #if lek1 and lek2 and choroba in abstract:
-# #    print('znaleziono podane zmienne')
-# #else:
-# #    print('nie znaleziono')
-# for i in zdania:
-#     if lek1 and lek2 and choroba1 in i:
-#         print('znaleziono podane zmienne w jednym zdaniu --> może zachodzić interakcja. Nalezy się skonsultować z lekarzem lub farmaceutą i zapoznac z artyklem')
-#     else:
-#         print('nie znaleziono ich razem w zdaniu')
-# search = f"{lek1}+{lek2}+{choroba}"
-# print(search)
-# #if lek1 and lek2 and choroba in abstract:
-# #    print('znaleziono podane zmienne')
-# #else:
-# #    print('nie znaleziono')
-# zdania = abstract.split(". ")
-# liczba_zdan_negatywnych = 0
-# for liczba_zdan, i in enumerate(zdania):
-#     if lek1 and lek2 and choroba in i:
-#         pass
-#     else:
-#         liczba_zdan_negatywnych +=1
-# procent = (1-(liczba_zdan_negatywnych/liczba_zdan)) * 100
-# print(f'Pierwszy grade artykułu {procent} %.')
