@@ -34,21 +34,35 @@ no_interaction_set = {
 'not causes inflammation',
 'not cause inflammation',
 }
-class Animal:
+class Filter:
         
-    def __init__(self):
-        self.kamil = "kamil" 
-        # self.abstract = ""
-        # self.set_of_abstract_words = ""
-        # self.list_of_sets_of_sentence = ""
+    def __init__(self, url):
+        self.url = url
+        self.abstract = None
+        self.set_of_abstract_words = None
+        self.list_of_sets_of_sentence = None
         
-    # def get_abstract(self):    
-    #     page = requests.get(self.url)
-    #     soup = BeautifulSoup(page.content, 'html.parser')
-    #     self.abstract = soup.find(id="Abs1-section").get_text() # wybiera text z sekcjii Abs1-section
+    def _get_abstract(self):    
+        page = requests.get(self.url)
+        soup = BeautifulSoup(page.content, 'html.parser')
+        self.abstract = soup.find(id="Abs1-section").get_text() # wybiera text z sekcjii Abs1-section
     
+    def _create_set_of_abstract_words(self):
+        abstract1 = self.abstract.replace(", "," ")
+        abstract2 = self.abstract.replace("/"," ")
+        self.set_of_abstract_words = set(abstract2.split(" "))
 
-        
+    def _create_list_of_sets_of_sentence(self):
+        abstract1 = self.abstract.replace(", "," ")
+        abstract2 = self.abstract.replace("/"," ")
+        self.list_of_sets_of_sentence = []
+
+    def get_data_from_page(self):
+        _get_abstract()
+        _create_set_of_abstract_words()
+        _create_list_of_sets_of_sentence()
+
+
     # def jdkj(self):
     #     self.set_of_abstract_words = set(abstract2.split(" "))
     #     self.list_abstract_sentence = abstract2.split(". ")
@@ -58,9 +72,10 @@ class Animal:
         # for x in self.list_abstract_sentence:
         #     self.list_of_abstract_sentece_sets.append(set(x))
     
-    obiekt = Animal()
+obiekt = Filter('https://link.springer.com/article/10.2165/11205830-000000000-00000')
 
-    print(obiekt.kamil)
+print(obiekt.get_data_from_page())
+print(obiekt.abstract)
 
     
     
