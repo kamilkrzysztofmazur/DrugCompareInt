@@ -42,17 +42,17 @@ class Filter:
         self.set_of_abstract_words = None
         self.list_of_abstract_sentence_sets = None
         
-    def _get_abstract(self):    
+    def get_abstract(self):
         page = requests.get(self.url)
         soup = BeautifulSoup(page.content, 'html.parser')
         self.abstract = soup.find(id="Abs1-section").get_text() # wybiera text z sekcjii Abs1-section
     
-    def _create_set_of_abstract_words(self):
+    def create_set_of_abstract_words(self):
         abstract1 = self.abstract.replace(", "," ")
         abstract2 = self.abstract.replace("/"," ")
         self.set_of_abstract_words = set(abstract2.split(" "))
 
-    def _create_list_of_sets_of_sentence(self):
+    def create_list_of_sets_of_sentence(self):
         abstract1 = self.abstract.replace(", "," ")
         abstract2 = self.abstract.replace("/"," ")
         self.list_abstract_sentence = abstract2.split(". ")
@@ -60,9 +60,9 @@ class Filter:
         self.list_of_abstract_sentence_sets = [set(x.split(" ")) for x in self.list_abstract_sentence] 
     
     def get_data_from_page(self):
-        self._get_abstract()
-        self._create_set_of_abstract_words()
-        self._create_list_of_sets_of_sentence()
+        self.get_abstract()
+        self.create_set_of_abstract_words()
+        self.create_list_of_sets_of_sentence()
 
     def check_abstract(self):
         if set_of_serch_items.issubset(self.set_of_abstract_words):
