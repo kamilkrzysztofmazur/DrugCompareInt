@@ -1,6 +1,6 @@
 from flask import Flask, url_for, redirect, request
 from flask import render_template
-from BeautifulSoup import Filter, LinksGetter
+from scraping import Filter, LinksGetter
 
 app = Flask(__name__)
 
