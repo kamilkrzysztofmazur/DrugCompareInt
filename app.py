@@ -1,20 +1,37 @@
-from Flask import flask, render_template, url_for, request, redirect
-from BeautifulSoup.py import LinksGetter, Filter
-
+from flask import Flask, url_for, redirect, request
+from flask import render_template
+from BeautifulSoup import Filter, LinksGetter
 
 app = Flask(__name__)
 
+no_interaction_set = {
+'nointeraction',
+'nointeractions',
+'nopain',
+'noadditionalpain',
+'noservepain',
+'nosideeffects',
+'harmless',
+'save',
+'nocomplications',
+'notcausesinflammation',
+'notcauseinflammation',
+}
 # tu wklejamy clasy i funkcje z baxy dnaych bądź ją na począku importujemy z plki i tlyko wywołujemy
 # tu tez wklejamy kod z BeautifulSoup.py bądź imporujemy clasy z pliku i tlyko wywołujemy zeby program wykonał
 
-@app.route('/home', methods=['POST'])
-def index():
-    if request.method == 'POST':
-        first_drug = request.form['home'] # wskazac miejsca z formularza html od Beaty
-        second_drug = request.form['home'] # wskazac miejsca z formularza html od Beaty
-        disease = request.form['home'] # wskazac miejsca z formularza html od Beaty
-        searching_words = f"{first_drug}+{second_drug}+{disease}"
+@app.route('/')
+def main():
+    return render_template('home.html')
 
+@app.route('/result', methods=['POST', 'GET'])
+def result():
+    if request.method == 'POST':
+        first_drug = request.form['content1'] # wskazac miejsca z formularza html od Beaty
+        second_drug = request.form['content2'] # wskazac miejsca z formularza html od Beaty
+        disease = request.form['content3'] # wskazac miejsca z formularza html od Beaty
+        searching_words = f"{first_drug}+{second_drug}+{disease}"
+        set_of_serch_items = {first_drug, second_drug, disease}
         try:
             object = LinksGetter(searching_words)
             object.get_page_content()
@@ -22,6 +39,8 @@ def index():
             list_of_objects = [Filter(x) for x in object.list_of_article_links]
             list_of_proper_links = []
             for x in list_of_objects:
+                x.set_of_search_items = set_of_serch_items
+                x.no_interaction_set = no_interaction_set
                 x.get_data_from_page()
             for x in list_of_objects:
                 if x.check_abstract() == True:
@@ -29,19 +48,16 @@ def index():
                         if x.check_for_no_interaction_words() == True:
                             list_of_proper_links.append(x.url)
 
-            return render_template('result.html')  #redirect('/results')
+            return render_template('result.html', list=list_of_proper_links)  #redirect('/results')
 
         except:
            return 'Błąd wyszukiwania'
 
     else:
-        return render_template('index.html') #index -. Beata robi frontend
-
-#@app.route('/results', methods=['GET'])
-#def results():
+        return render_template('home.html') #index -. Beata robi frontend
 #    leyout_apki('formularz_od_Beaty')
 #    return render_template('list_of_proper_links') #result from BeautifulSoup.py
 
 
-if __name__ "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
