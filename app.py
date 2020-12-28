@@ -54,10 +54,7 @@ def result():
            return 'Błąd wyszukiwania'
 
     else:
-        return render_template('home.html') #index -. Beata robi frontend
-#    leyout_apki('formularz_od_Beaty')
-#    return render_template('list_of_proper_links') #result from BeautifulSoup.py
-
+        return render_template('home.html') 
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -2,44 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" container="width=device-width, initial-scale=1">
+    <meta name="viewport" container="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap" rel="stylesheet">
     <title>Home</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
 </head>
 <body>
     <form action="/result" method="POST">
-        <div id="'container">
-            <div class="rectangle">
-                <h1>Drug Comparison App</h1>
-            </div>
-            <div class="rectangle1">
-            <input type="text" name="content1" id="content1">
-            </div>
-            <div class="rectangle1">
-                <input type="text" name="content2" id="content2">
-            </div>
-            <div class="rectangle1">
-                <input type="text" name="content3" id="content3">
-            </div>
-            <div class="square">
-                <!--img id="image" src="PGF.png"-->
-                {% for product in list %}
-                    <a href="{{ product }}">{{ product }}</a>
+        <div class="container">
+                <div class="heading">
+                    <h1>Drug Comparison App</h1>
+                </div>
+                <div class="rectangle1">
+                    {% for product in list %}
+                        <a href="{{ product }}">{{ product }}</a></br>
                     {% endfor %} 
-
-
-
-
-            </div>
-            <div class="button">
-                <button>
-                    <b>Wyszukaj</b>
-                </button>
-            </div>
-            <div class="footer">
-                Wszelkie prawa zastrzeżone
-            </div>
-        </form>
-    </div>
+                </div>
+                <div class="button">
+                    <button>
+                            <b>Powrót</b>
+                    </button>
+                </div>
+                <div class="footer">
+                    2020&copy Wszelkie prawa zastrzeżone
+                </div>
+        </div>
+    </form>    
 </body>
 </html>

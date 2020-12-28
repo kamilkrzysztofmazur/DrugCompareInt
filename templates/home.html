@@ -2,37 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" container="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <meta name="viewport" container="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap" rel="stylesheet">
+    <title>Home</title>
 </head>
 <body>
     <form action="/result" method="POST">
-        <div id="'container">
-            <div class="rectangle">
-                <h1>Drug Comparison App</h1>
-            </div>
-            <div class="rectangle1">
-            <input type="text" name="content1" id="content1">
-            </div>
-            <div class="rectangle1">
-                <input type="text" name="content2" id="content2">
-            </div>
-            <div class="rectangle1">
-                <input type="text" name="content3" id="content3">
-            </div>
-            <div class="square">
-                <img id="image" src="pgf.png">
-            </div>
-            <div class="button">
-                <button>
-                    <b>Wyszukaj</b>
-                </button>
-            </div>
-            <div class="footer">
-                Wszelkie prawa zastrzeżone
-            </div>
-        </form>
-    </div>
+        <div class="container">
+                <div class="heading">
+                    <h1>Drug Comparison App</h1>
+                </div>
+                <div class="rectangle1">
+                    <input type="text" name="content1" id="content1" placeholder="Wprowadź pierwszy lek">
+                </div>
+                <div class="rectangle1">
+                    <input type="text" name="content2" id="content2" placeholder="Wprowadź drugi lek">
+                </div>
+                <div class="rectangle1">
+                    <input type="text" name="content3" id="content3" placeholder="Wprowadź chorobę">
+                </div>
+                <div class="button">
+                    <button>
+                            <b>Wyszukaj</b>
+                    </button>
+                </div>
+                <div class="footer">
+                    2020&copy Wszelkie prawa zastrzeżone
+                </div>
+        </div>
+    </form>    
 </body>
 </html>
