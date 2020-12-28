@@ -50,7 +50,7 @@ input
     border: 1px solid #000000;
     background-color: whitesmoke;
     text-align: center;
-    color: #0088cc;
+    color: black;
     width: 300px;
     height: 30px;
 }
@@ -68,8 +68,8 @@ button
     border-style: solid;
     border-color: red;
     border-radius: 90%;
-    padding-bottom: 37%;
-    padding-top: 37%;
+    padding-bottom: 35%;
+    padding-top: 35%;
     color: whitesmoke;
     font-size: 25px;
     font-family: 'Lato', sans-serif;

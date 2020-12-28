@@ -5,7 +5,8 @@ from scraping import Filter, LinksGetter
 app = Flask(__name__)
 
 no_interaction_set = {
-'nointeraction',
+'no'}
+'''interaction'}
 'nointeractions',
 'nopain',
 'noadditionalpain',
@@ -16,7 +17,7 @@ no_interaction_set = {
 'nocomplications',
 'notcausesinflammation',
 'notcauseinflammation',
-}
+}'''
 # tu wklejamy clasy i funkcje z baxy dnaych bądź ją na począku importujemy z plki i tlyko wywołujemy
 # tu tez wklejamy kod z BeautifulSoup.py bądź imporujemy clasy z pliku i tlyko wywołujemy zeby program wykonał
 
@@ -47,8 +48,12 @@ def result():
                     if x.check_abstract_sentences() == True:
                         if x.check_for_no_interaction_words() == True:
                             list_of_proper_links.append(x.url)
+            if not list_of_proper_links:
+                comment = "Nie znaleziono artykułów odpowiadających podanym kryteriom"
+            else:
+                comment = "Poniżej artykuły odpowiadające kryteriom wyszukiwania"
 
-            return render_template('result.html', list=list_of_proper_links)  #redirect('/results')
+            return render_template('result.html', list=list_of_proper_links, comment=comment)  #redirect('/results')
 
         except:
            return 'Błąd wyszukiwania'
