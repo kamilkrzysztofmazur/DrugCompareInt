@@ -25,6 +25,10 @@ no_interaction_set = {
 def main():
     return render_template('home.html')
 
+@app.route('/home', methods=['POST', 'GET'])
+def home():
+    return render_template('home.html')
+
 @app.route('/result', methods=['POST', 'GET'])
 def result():
     if request.method == 'POST':
