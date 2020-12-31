@@ -63,7 +63,8 @@ def result():
             return render_template('result.html', list=list_of_proper_links,  list1=list_of_proper_links1,  list2=list_of_proper_links2, comment=comment)  #redirect('/results')
 
         except:
-           return 'Błąd wyszukiwania'
+            comment = "Nie znaleziono artykułów odpowiadających podanym kryteriom"
+            return render_template('result.html', list=list_of_proper_links, comment=comment)
 
     else:
         return render_template('home.html') 
