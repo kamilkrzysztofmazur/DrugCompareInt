@@ -21,5 +21,5 @@
 - [Webdriver.exe 87.0.4280.88](https://sites.google.com/a/chromium.org/chromedriver/downloads) - file download
 
 
-###External Platforms
+### External Platforms
 [GitHub](https://github.com/kamilkrzysztofmazur/DrugCompareInt) - repository hosting
