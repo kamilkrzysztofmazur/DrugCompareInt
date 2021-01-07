@@ -1,0 +1,8 @@
+flask
+pytest
+pylint
+pytest-cov
+black
+request
+BeautifulSoup
+Selenium
