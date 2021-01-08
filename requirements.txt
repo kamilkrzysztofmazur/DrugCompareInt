@@ -4,6 +4,5 @@ pylint
 pytest-cov
 black
 Requests
-BeautifulSoup
+BeautifulSoup4
 Selenium
-re

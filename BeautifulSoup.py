@@ -1,6 +1,6 @@
 import re
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup4
 #print('Wpisz nazwe leku 1: ')
 first_drug = 'paracetamol' #input()
 #print('Wpisz nazwe leku 2: ')
