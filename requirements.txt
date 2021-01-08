@@ -3,6 +3,6 @@ pytest
 pylint
 pytest-cov
 black
-request
+requests
 BeautifulSoup
 Selenium
