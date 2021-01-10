@@ -8,27 +8,27 @@ second_drug = 'tramadol'
 
 disease = 'pain'
 set_of_search_items = {first_drug, second_drug, disease}
-searching_words = f"{first_drug}+{second_drug}+{disease}"
+searching_words = f"{first_drug} + {second_drug} + {disease}"
 no_interaction_set = {
-    'no interaction',
-    'no interactions',
-    'no pain',
-    'no additional pain',
-    'no serve pain',
-    'no side effects',
+    'nointeraction',
+    'nointeractions',
+    'nopain',
+    'noadditionalpain',
+    'noservepain',
+    'nosideeffects',
     'harmless',
     'save',
-    'no complications',
-    'not causes inflammation',
-    'not cause inflammation',
+    'nocomplications',
+    'notcausesinflammation',
+    'notcauseinflammation',
     }
 
 
 class LinksGetter:
 
     def __init__(self, searching_words):
-        self.soup = BeautifulSoup(self.link_to_service.content, 'html.parser')
         self.searching_words = searching_words
+        self.soup = BeautifulSoup(self.link_to_service.content, 'html.parser')
         self.link_to_service = None
         self.list_of_article_links = None
 
@@ -37,7 +37,7 @@ class LinksGetter:
         self.link_to_service.raise_for_status()
 
     def get_list_of_links(self):
-        content = self.soup.find_all("div", {"class": "doc sum-content"})
+        content = self.soup.find_all("div", {"class": "docsum-content"})
         self.list_of_article_links = ['https://pubmed.ncbi.nlm.nih.gov'+x.a['href'] for x in content]
 
 
@@ -69,17 +69,17 @@ class Filter:
         self.create_list_of_sets_of_sentence()
 
     def check_abstract(self):
-        if set_of_serch_items.issubset(self.set_of_abstract_words):
+        if set_of_search_items.issubset(self.set_of_abstract_words):
             return True
 
     def check_abstract_sentences(self):
-        for x in self.list_of_abstract_sentence_sets:
-            if set_of_serch_items.issubset(x):
+        for sentence in self.list_of_abstract_sentence_sets:
+            if set_of_search_items.issubset(sentence):
                 return True
 
     def check_for_no_interaction_words(self):
-        for x in no_interaction_set:
-            if x in self.abstract.replace(' ', ''):
+        for sentence in no_interaction_set:
+            if sentence in self.abstract.replace(' ', ''):
                 return True
 
 object = LinksGetter(searching_words)
