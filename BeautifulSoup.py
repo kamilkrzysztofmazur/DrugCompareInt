@@ -2,38 +2,17 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-first_drug = 'paracetamol'
-
-second_drug = 'tramadol'
-
-disease = 'pain'
-set_of_search_items = {first_drug, second_drug, disease}
-searching_words = f"{first_drug} + {second_drug} + {disease}"
-no_interaction_set = {
-    'nointeraction',
-    'nointeractions',
-    'nopain',
-    'noadditionalpain',
-    'noservepain',
-    'nosideeffects',
-    'harmless',
-    'save',
-    'nocomplications',
-    'notcausesinflammation',
-    'notcauseinflammation',
-    }
-
 
 class LinksGetter:
 
-    def __init__(self, searching_words):
-        self.searching_words = searching_words
+    def __init__(self, string_of_searching_words):
+        self.string_of_searching_words = string_of_searching_words
         self.soup = BeautifulSoup(self.link_to_service.content, 'html.parser')
         self.link_to_service = None
         self.list_of_article_links = None
 
     def get_page_content(self):
-        self.link_to_service = requests.get(f'https://pubmed.ncbi.nlm.nih.gov/?term={searching_words}')
+        self.link_to_service = requests.get(f'https://pubmed.ncbi.nlm.nih.gov/?term={string_of_searching_words}')
         self.link_to_service.raise_for_status()
 
     def get_list_of_links(self):
@@ -82,7 +61,28 @@ class Filter:
             if sentence in self.abstract.replace(' ', ''):
                 return True
 
-object = LinksGetter(searching_words)
+first_drug = 'paracetamol'
+
+second_drug = 'tramadol'
+
+disease = 'pain'
+set_of_search_items = {first_drug, second_drug, disease}
+string_of_searching_words = f"{first_drug} + {second_drug} + {disease}"
+no_interaction_set = {
+    'nointeraction',
+    'nointeractions',
+    'nopain',
+    'noadditionalpain',
+    'noservepain',
+    'nosideeffects',
+    'harmless',
+    'save',
+    'nocomplications',
+    'notcausesinflammation',
+    'notcauseinflammation',
+    }
+
+object = LinksGetter(string_of_searching_words)
 object.get_page_content()
 object.get_list_of_links()
 print(object.list_of_article_links)
