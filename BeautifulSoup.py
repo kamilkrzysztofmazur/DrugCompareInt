@@ -82,11 +82,11 @@ no_interaction_set = {
     'notcauseinflammation',
     }
 
-object = LinksGetter(string_of_searching_words)
-object.get_page_content()
-object.get_list_of_links()
-print(object.list_of_article_links)
-list_of_objects = [Filter(x) for x in object.list_of_article_links]
+links_getter = LinksGetter(string_of_searching_words)
+links_getter.get_page_content()
+links_getter.get_list_of_links()
+print(links_getter.list_of_article_links)
+list_of_objects = [Filter(x) for x in links_getter.list_of_article_links]
 list_of_proper_links = []
 for x in list_of_objects:
     x.get_data_from_page()
