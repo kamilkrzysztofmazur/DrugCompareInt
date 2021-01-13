@@ -1,4 +1,4 @@
-from BeautifulSoup import Filter
+from beautiful_soup import Filter
 import re
 
 # test sprawdzający czy w artykule pod linkiem występują 3 słowa kluczowe
